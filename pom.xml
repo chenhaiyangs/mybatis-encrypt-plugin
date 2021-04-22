@@ -78,7 +78,7 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>3.4.5</version>
+            <version>3.5.6</version>
             <scope>provided</scope>
         </dependency>
         <!-- slf4j核心抽象日志框架。使程序中的日志系统面向抽象，而不是具体的实现 -->
