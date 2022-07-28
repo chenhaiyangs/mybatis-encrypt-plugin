@@ -102,7 +102,8 @@ public class DecryptReadInterceptor implements Interceptor {
         }
         Map<String, SensitiveBinded> sensitiveBindedMap = new HashMap<>(16);
         Class<?> clazz = resultMap.getType();
-        for (Field field: clazz.getDeclaredFields()) {
+        List<Field> fields = PluginUtils.getFields(clazz);
+        for (Field field : fields) {
             SensitiveBinded sensitiveBinded = field.getAnnotation(SensitiveBinded.class);
             if (sensitiveBinded != null) {
                 sensitiveBindedMap.put(field.getName(), sensitiveBinded);
@@ -121,8 +122,8 @@ public class DecryptReadInterceptor implements Interceptor {
 
     private Map<String, EncryptField> getSensitiveByType(Class<?> clazz) {
         Map<String, EncryptField> sensitiveFieldMap = new HashMap<>(16);
-
-        for (Field field: clazz.getDeclaredFields()) {
+        List<Field> fields = PluginUtils.getFields(clazz);
+        for (Field field : fields) {
             EncryptField sensitiveField = field.getAnnotation(EncryptField.class);
             if (sensitiveField != null) {
                 sensitiveFieldMap.put(field.getName(), sensitiveField);
