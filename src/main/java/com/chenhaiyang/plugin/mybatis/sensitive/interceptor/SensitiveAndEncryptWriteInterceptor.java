@@ -64,8 +64,8 @@ public class SensitiveAndEncryptWriteInterceptor implements Interceptor {
 
         Map<String, Object> newValues = new HashMap<>(16);
         MetaObject metaObject = configuration.newMetaObject(param);
-
-        for (Field field : param.getClass().getDeclaredFields()) {
+        List<Field> fields = PluginUtils.getFields(param.getClass());
+        for (Field field : fields) {
 
             Object value = metaObject.getValue(field.getName());
             Object newValue = value;
